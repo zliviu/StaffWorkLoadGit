@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+   <!-- See http://developer.yahoo.com/yui/grids/ for info on the grid layout -->
+   <title>Work Timeline Example</title>
+   <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+
+   <!-- See http://developer.yahoo.com/yui/ for info on the reset, font and base css -->
+   <link rel="stylesheet" href="http://yui.yahooapis.com/2.7.0/build/reset-fonts-grids/reset-fonts-grids.css" type="text/css">
+   <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.7.0/build/base/base-min.css"> 
+
+   <!-- Load the Timeline library after reseting the fonts, etc -->
+   <script src="http://static.simile.mit.edu/timeline/api-2.3.1/timeline-api.js?bundle=true" type="text/javascript"></script>
+ 
+   <link rel="stylesheet" href="WorkTimeline.css" type="text/css">
+
+   <!-- Since we don't have our own server, we do something tricky and load our data here as if it were a library file -->
+   <script src="WorkTimeline.js" type="text/javascript"></script>
+
+   <script>        
+        var tl;
+        function onLoad() {
+            var tl_el = document.getElementById("tl");
+            var eventSource1 = new Timeline.DefaultEventSource();
+            
+            var theme1 = Timeline.ClassicTheme.create();
+			theme1.event.bubble.width = 350;
+            theme1.event.bubble.height = 300;
+            //theme1.autoWidth = true; // Set the Timeline's "width" automatically.
+            //theme1.timeline_start = new Date(Date.UTC(2000, 0, 1));
+            //theme1.timeline_stop  = new Date(Date.UTC(2050, 0, 1));
+            
+			var cDate = new Date();
+			var prevSunday = new Date(cDate.setDate(cDate.getDate() - cDate.getDay())); 
+            var d = Timeline.DateTime.parseGregorianDateTime(prevSunday);
+			
+            var bandInfos = [
+                Timeline.createBandInfo({
+                    width:          "80%",
+                    intervalUnit:   Timeline.DateTime.WEEK, 
+                    intervalPixels: 550,
+                    eventSource:    eventSource1,
+                    date:           d,
+                    theme:          theme1,
+                    layout:         'original'  // original, overview, detailed
+                }),
+				Timeline.createBandInfo({          
+					width:          "20%",           
+					intervalUnit:   Timeline.DateTime.MONTH,           
+					intervalPixels: 100,
+                    eventSource:    eventSource1,
+					overview:		true
+				})
+            ];
+			bandInfos[1].syncWith = 0;    
+			bandInfos[1].highlight = true;
+                                                            
+            // create the Timeline
+            tl = Timeline.create(tl_el, bandInfos, Timeline.HORIZONTAL);
+            
+            var url = '.'; // The base url for image, icon and background image references in the data
+            eventSource1.loadJSON(timeline_data, url); // The data was stored into the timeline_data variable.
+            tl.layout(); // display the Timeline
+        }
+        
+        var resizeTimerID = null;
+        function onResize() {
+            if (resizeTimerID == null) {
+                resizeTimerID = window.setTimeout(function() {
+                    resizeTimerID = null;
+                    tl.layout();
+                }, 500);
+            }
+        }
+   </script>
+
+</head>
+<body onload="onLoad();" onresize="onResize();">
+
+<div id="doc3" class="yui-t7">
+
+   <div id="hd" role="banner">
+     <h1>Work Timeline</h1>
+     <p>This example reads a local data file from the disk and displays it using the Simile Timeline library.</p>
+   </div>
+
+   <div id="bd" role="main" style="height:100%">
+	   <div class="yui-g" style="height:100%">
+	     <div id='tl' class="timeline-default" style="height: 300px;"></div>
+	     <p>To move the Timeline: use the mouse scroll wheel, the arrow keys or grab and drag the Timeline.</p>
+	   </div>
+	 </div>
+</div>
+
+</body>
+</html>
+
+

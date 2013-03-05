@@ -1,0 +1,10 @@
+﻿@model System.String 
+@using StaffWorkLoad.Helpers
+			 
+@{ var picker = ViewData.GetModelAttribute<ColorPickerAttribute>();
+	 if (picker != null) {        
+			@*@Html.LabelForModel()      *@
+			@Html.TextBoxFor(m => m, new { id = ViewData.ModelMetadata.AdditionalValues[ColorPickerAttribute.ColorPicker] })    
+	}
+}
+

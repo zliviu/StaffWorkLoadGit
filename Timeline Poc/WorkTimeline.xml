@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<events>
+	<event>
+		<start>2011-10-03</start>
+		<end>2011-10-08</end>
+		<title>Liviu - Shairs 3</title>
+		<description>Upgrading Shairs 3 to ensure compatibility with Win7 x64 and Office 2010 </description>
+		<color>red</color>
+		<textColor>green</textColor>
+	</event>
+	<event>
+		<start>2011-10-03</start>
+		<end>2011-10-08</end>
+		<title>Conrad - ESOS</title>
+		<description>ESOS Portal Poc</description>
+		<color>green</color>
+	</event>
+	<event>
+		<start>2011-10-03</start>
+		<end>2011-10-08</end>
+		<title>Dan - SPARS Diary</title>
+		<description>CRSTORE - SPARS Diary</description>
+	</event>
+	<event>
+		<start>2011-10-10</start>
+		<end>2011-10-12 23:00</end>
+		<title>Liviu - Radar</title>
+		<description>Upgrading Radar to ensure compatibility with Win7 x64 and Office 2010 </description>
+		<color>red</color>
+		<textColor>green</textColor>
+	</event>
+	<event>
+		<start>2011-10-14</start>
+		<end>2011-10-15</end>
+		<title>Liviu - Imagic</title>
+		<description>Upgrading CTWorkbench + IADCM Watcher to ensure compatibility with Win7 x64 and Office 2010 </description>
+		<color>red</color>
+		<textColor>green</textColor>
+	</event>
+	<event>
+		<start>2011-10-10</start>
+		<end>2011-10-12</end>
+		<title>Conrad - ESOS</title>
+		<description>ESOS Portal Poc</description>
+		<color>green</color>
+	</event>
+	<event>
+		<start>2011-10-13</start>
+		<end>2011-10-15</end>
+		<title>Conrad - ESOS</title>
+		<description>ESOS Portal Poc</description>
+		<color>green</color>
+	</event>
+	<event>
+		<start>2011-10-10</start>
+		<end>2011-10-15</end>
+		<title>Dan - CRStore</title>
+		<description>CRSTORE - Web sites</description>
+	</event>
+</events>

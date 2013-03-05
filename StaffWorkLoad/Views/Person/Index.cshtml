@@ -1,0 +1,46 @@
+﻿@model IEnumerable<StaffWorkLoad.Models.Person>
+@using StaffWorkLoad.Helpers
+
+@{
+	ViewBag.Title = "Staff Index";
+}
+
+<h2>Staff Member Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            First Name
+        </th>
+        <th>
+            Last Name
+        </th>
+        <th>
+            Legend Colour
+        </th>
+        <th>
+						Delete
+				</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td width="120">
+            @Html.ActionLink(item.FirstName, "Edit", new { id = item.PersonID })
+        </td>
+        <td width="120">
+            @Html.ActionLink(item.LastName, "Edit", new { id = item.PersonID })
+        </td>
+        <td width="120">
+            @Html.DisplayFor(modelItem => item.LineColour)
+        </td>
+				<td width="40" align="center">
+						@Html.ImageActionLink(Url.Content("~/Content/Images/delete.png"), "", "Delete", new { id = item.PersonID }, new { title = "Delete", border = 0, hspace = 2, height = 12, width = 12 })
+        </td>
+    </tr>
+}
+
+</table>

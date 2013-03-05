@@ -1,0 +1,79 @@
+﻿@model IEnumerable<StaffWorkLoad.Models.WorkLoad>
+@using StaffWorkLoad.Helpers
+
+@{
+	ViewBag.Title = "Workload Timeline";
+}
+
+@*<h2>Index</h2>*@
+
+<div id="doc3" class="yui-t7">
+
+   <h1>Staff Workload Timeline</h1>
+
+   <div id="bd">
+	   <div class="yui-g">
+	     <div id='tl' class="timeline-default" style="height: 220px;"></div>
+	     <p>To move the Timeline: use the mouse scroll wheel, the arrow keys or grab and drag the Timeline.</p>
+	   </div>
+	 </div>
+</div>
+
+<p>
+    @Html.ActionLink("New Workload", "Create")
+
+		@using (Html.BeginForm("SearchIndex", "WorkLoad", FormMethod.Get)){    
+         <p>Staff Name: @Html.DropDownList("staffName", "All")   
+						&nbsp; Start: @Html.TextBox("sDate", String.Format("{0:dd/MM/yyyy}", (string)ViewBag.sDate), new { @class = "date-pick" })
+            End: @Html.TextBox("eDate", String.Format("{0:dd/MM/yyyy}", (string)ViewBag.eDate), new { @class = "date-pick" })
+					 <input type="submit" value="Filter" /></p> 
+        } 
+</p>
+<div style="overflow: auto; max-height: 380px;"> 
+<table style="width:98%;"> 
+    <tr>
+        <th>
+            Staff
+        </th>
+				<th>
+            Work
+        </th>
+        <th>
+            Start 
+        </th>
+        <th>
+            End 
+        </th>
+        <th>
+            Notes
+        </th>
+        <th>
+						Delete
+				</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td width="120">
+            @Html.DisplayFor(modelItem => item.StaffName.FullName)
+        </td>
+        <td width="120">
+            @Html.ActionLink(item.WorkType, "Edit", new { id = item.ID })
+        </td>
+        <td width="80">
+            @Html.DisplayFor(modelItem => item.StartDate)
+        </td>
+        <td width="80">
+            @Html.DisplayFor(modelItem => item.EndDate)
+        </td>
+        <td>
+            @Html.Truncate(item.Notes, 125) 
+        </td>
+        <td width="40" align="center">
+						@Html.ImageActionLink(Url.Content("~/Content/Images/delete.png"), "", "Delete", new { id = item.ID }, new { title = "Delete", border = 0, hspace = 2, height = 12, width = 12 })
+        </td>
+    </tr>
+}
+
+</table>
+</div>

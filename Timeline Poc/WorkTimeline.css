@@ -1,0 +1,19 @@
+
+html  {background-color: #003366;}
+#doc3 {background-color: #fff8dc;}
+
+#wrap1 {display: block;}
+#hd, #ft {margin: 2em; padding-top: 2em;}
+#ft {padding-bottom: 1em;}
+#bd div.yui-g {margin: 2em;}
+h1 {color: #834c24;}
+p {margin-top: .5em;}
+
+.timeline-default {
+	BORDER-BOTTOM: #aaa 1px solid; 
+	BORDER-LEFT: #aaa 1px solid; 
+	FONT-FAMILY: Trebuchet MS, Helvetica, Arial, sans serif; 
+	FONT-SIZE: 8pt; 
+	BORDER-TOP: #aaa 1px solid; 
+	BORDER-RIGHT: #aaa 1px solid
+}
